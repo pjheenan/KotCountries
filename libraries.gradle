@@ -1,0 +1,79 @@
+ext {
+
+    minSdkVersion = 14
+    compileSdkVersion = 21
+    buildToolsVersion = '21.1.2'
+
+    //Android
+    daggerVersion = '1.2.2'
+    ottoVersion = '1.3.5'
+    butterknifeVersion = '6.1.0'
+    androidSupportVersion = '21.0.+'
+    rxandroidVersion = '0.22.0'
+    flowVersion = '0.8'
+    appCompatVersion = '21.0.0'
+    recyclerViewVersion = '+'
+    cardViewVersion = '+'
+    assertJVersion = '1.0.0'
+    picassoVersion = '2.4.0'
+    googlePlayServicesVersion = '6.5.+'
+    smoothProgressBarVersion = '1.0.0'
+    circularProgressBarVersion = '1.0.2'
+    crashlyticsVersion = '1+'
+    timesSquareVersion = '1.5.0'
+
+    //Kotlin
+    kotlinVersion = '0.10.195'
+
+    //Java
+    rxjavaVersion = '1.0.4'
+    javaxInjectVersion = '1'
+    retrofitVersion = '1.8.0'
+    okhttpVersion = '2.1.0'
+    commonsCodecVersion = '1.7'
+    gsonVersion = '2.3'
+    findbugsVersion = '2.0.3'
+    commonsCodecVersion = '1.7'
+
+    //Testing
+    junitVersion = '4.11'
+    dexmakerVersion = '1.1'
+    mockitoVersion = '1.9.5'
+
+    libraries = [
+            kotlin                    : "org.jetbrains.kotlin:kotlin-stdlib:${kotlinVersion}",
+            timesSquare               : "com.squareup:android-times-square:${timesSquareVersion}@aar",
+            crashlytics               : "com.crashlytics.android:crashlytics:${crashlyticsVersion}",
+            smoothProgressBar         : "com.github.castorflex.smoothprogressbar:library:${smoothProgressBarVersion}",
+            circularProgressBar       : "com.github.castorflex.smoothprogressbar:library-circular:${circularProgressBarVersion}",
+            googlePlayServicesLocation: "com.google.android.gms:play-services-location:${googlePlayServicesVersion}",
+            recyclerView              : "com.android.support:recyclerview-v7:${recyclerViewVersion}",
+            picasso                   : "com.squareup.picasso:picasso:${picassoVersion}",
+            cardView                  : "com.android.support:cardview-v7:${cardViewVersion}",
+            appCompat                 : "com.android.support:appcompat-v7:${appCompatVersion}",
+            findBugs                  : "com.google.code.findbugs:jsr305:${findbugsVersion}",
+            gson                      : "com.google.code.gson:gson:${gsonVersion}",
+            otto                      : "com.squareup:otto:${ottoVersion}",
+            flow                      : "com.squareup.flow:flow:${flowVersion}",
+            butterknife               : "com.jakewharton:butterknife:${butterknifeVersion}",
+            dagger                    : "com.squareup.dagger:dagger:${daggerVersion}",
+            daggerCompiler            : "com.squareup.dagger:dagger-compiler:${daggerVersion}",
+            rxjava                    : "io.reactivex:rxjava:${rxjavaVersion}",
+            rxandroid                 : "io.reactivex:rxandroid:${rxandroidVersion}",
+            androidSupport            : "com.android.support:support-v13:${androidSupportVersion}",
+            javaxInject               : "javax.inject:javax.inject:${javaxInjectVersion}",
+            retrofit                  : "com.squareup.retrofit:retrofit:${retrofitVersion}",
+            okhttp                    : "com.squareup.okhttp:okhttp:${okhttpVersion}",
+            okhttpurl                 : "com.squareup.okhttp:okhttp-urlconnection:${okhttpVersion}",
+            commons_codec             : "commons-codec:commons-codec:${commonsCodecVersion}",
+    ]
+
+    testLibraries = [
+            assertJAndroid : "com.squareup.assertj:assertj-android:${assertJVersion}",
+            dexmaker       : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+            dexmakerMockito: "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+            mockito        : "org.mockito:mockito-core:${mockitoVersion}",
+            junit          : "junit:junit:${junitVersion}",
+    ]
+
+}

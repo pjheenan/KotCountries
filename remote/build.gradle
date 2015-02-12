@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+compileKotlin {
+    kotlinOptions.annotations = file('annotations')
+}
+
+dependencies {
+    compile project(':core')
+
+    compile rootProject.ext.libraries.okhttp
+    compile rootProject.ext.libraries.okhttpurl
+    compile rootProject.ext.libraries.retrofit
+
+    testCompile testLibraries.junit
+    testCompile testLibraries.mockito
+}
