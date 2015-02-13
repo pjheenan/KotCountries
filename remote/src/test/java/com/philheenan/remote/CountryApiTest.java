@@ -2,6 +2,7 @@ package com.philheenan.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.philheenan.core.model.Country;
 
 import junit.framework.TestCase;
 
@@ -27,8 +28,7 @@ public class CountryApiTest extends TestCase {
     public void testCountryParser() {
         InputStream stream = CountryApiTest.class.getResourceAsStream("/country/country.json");
         assertNotNull(stream);
-        String json = stringResponse(stream);
-        ApiCountry country = gson.fromJson(json, ApiCountry.class);
+        ApiCountry country = gson.fromJson(stringResponse(stream), ApiCountry.class);
 
         assertNotNull(country);
         assertEquals("Colombia", country.getName());
@@ -38,6 +38,24 @@ public class CountryApiTest extends TestCase {
 
         assertTrue(country.getTranslations().containsKey("de"));
         assertTrue(country.getTranslations().containsValue("Colombie"));
+        assertNotNull(country.getBorders());
+        assertEquals("PAN", country.getBorders()[2]);
+        assertNotNull(country.getCallingCodes());
+        assertEquals("57", country.getCallingCodes()[0]);
+    }
+
+    public void testTransform() {
+        InputStream stream = CountryApiTest.class.getResourceAsStream("/country/country.json");
+        ApiCountry api = gson.fromJson(stringResponse(stream), ApiCountry.class);
+
+        Country model = api.modelFromMap();
+        assertNotNull(model);
+        assertEquals("Colombia", model.getName());
+        assertNotNull(model.getBorders());
+        assertEquals(5, model.getBorders().length);
+        for (Country item : model.getBorders()) {
+            assertNotNull(item.getIso3LetterCode());
+        }
     }
 
     private static String stringResponse(InputStream response) {

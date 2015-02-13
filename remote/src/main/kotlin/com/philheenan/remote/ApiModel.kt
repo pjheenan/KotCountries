@@ -1,9 +1,19 @@
 package com.philheenan.remote
 
+import com.philheenan.core.model.*
+
 /**
  * @author phillip.heenan (phillip.heenan@viagogo.com)
  */
-data class ApiTranslation(var language : String = "", var name : String = "")
+trait ApiMapping<out T> {
+    fun modelFromMap(): T
+}
+
+fun mapBorders(alpha3LetterCode: String): Country {
+    var country = Country()
+    country.iso3LetterCode = alpha3LetterCode
+    return country
+}
 
 data class ApiCountry(
         var name : String = "",
@@ -26,7 +36,9 @@ data class ApiCountry(
         var alpha2Code : String = "",
         var alpha3Code : String = "",
         var currencies : Array<String>,
-        var languages : Array<String>
+        var languages : Array<String>) : ApiMapping<Country> {
 
-)
-
+    override fun modelFromMap(): Country = Country(
+        this.name, this.capital, this.region, this.subregion, this.alpha2Code, this.alpha3Code, this.population, this.area,
+        Array<Country?>(borders.size(), { i -> mapBorders(borders[i])}), Location(latlng[0], latlng[1]))
+}
