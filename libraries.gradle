@@ -23,7 +23,7 @@ ext {
     timesSquareVersion = '1.5.0'
 
     //Kotlin
-    kotlinVersion = '0.10.195'
+    kotlinVersion = '0.10.+'
 
     //Java
     rxjavaVersion = '1.0.4'
