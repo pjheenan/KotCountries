@@ -3,7 +3,7 @@ package com.philheenan.remote
 import com.philheenan.core.model.*
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author phillip.heenan (pjheenan@gmail.com)
  */
 trait ApiMapping<out T> {
     fun modelFromMap(): T

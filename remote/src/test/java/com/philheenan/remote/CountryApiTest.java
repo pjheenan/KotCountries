@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 import java.io.*;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author phillip.heenan (pjheenan@gmail.com)
  */
 public class CountryApiTest extends TestCase {
 

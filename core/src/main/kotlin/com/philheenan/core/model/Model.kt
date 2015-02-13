@@ -1,7 +1,7 @@
 package com.philheenan.core.model
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author phillip.heenan (pjheenan@gmail.com)
  */
 public data class Location(var latitude : Int, var longitude : Int)
 
