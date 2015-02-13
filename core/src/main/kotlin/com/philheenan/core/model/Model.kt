@@ -3,7 +3,7 @@ package com.philheenan.core.model
 /**
  * @author phillip.heenan (pjheenan@gmail.com)
  */
-public data class Location(var latitude : Int, var longitude : Int)
+public data class Location(var latitude : Int = 0, var longitude : Int = 0)
 
 public data class Country(
         var name: String = "",
