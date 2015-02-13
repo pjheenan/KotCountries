@@ -1,6 +1,7 @@
 package com.philheenan.remote
 
-import com.philheenan.core.model.*
+import com.philheenan.core.model.Country
+import com.philheenan.core.model.Location
 
 /**
  * @author phillip.heenan (pjheenan@gmail.com)
