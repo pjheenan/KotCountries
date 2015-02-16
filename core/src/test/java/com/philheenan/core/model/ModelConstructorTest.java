@@ -18,7 +18,7 @@ public class ModelConstructorTest extends TestCase {
     }
 
     public void testConstructorPartial() {
-        Country country = new Country("name", "capital", "region", "subRegion", "NZ", "NZL", 4000000l, 10000000l, new Country[]{}, new Location());
+        Country country = new Country("name", "capital", "region", "subRegion", "NZ", "NZL", 4000000l, 10000000f, new Country[]{}, new Location());
 
         assertNotNull(country);
         country.setName("name");
