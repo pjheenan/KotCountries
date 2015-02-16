@@ -3,6 +3,7 @@ package com.philheenan.remote;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.philheenan.core.model.Country;
+import com.philheenan.remote.util.ApiUtils;
 
 import junit.framework.TestCase;
 
@@ -28,7 +29,7 @@ public class CountryApiTest extends TestCase {
     public void testCountryParser() {
         InputStream stream = CountryApiTest.class.getResourceAsStream("/country/country.json");
         assertNotNull(stream);
-        ApiCountry country = gson.fromJson(stringResponse(stream), ApiCountry.class);
+        ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
         assertNotNull(country);
         assertEquals("Colombia", country.getName());
@@ -44,9 +45,27 @@ public class CountryApiTest extends TestCase {
         assertEquals("57", country.getCallingCodes()[0]);
     }
 
+    public void testParsingNulls() {
+        InputStream stream = CountryApiTest.class.getResourceAsStream("/country/countryAland.json");
+        assertNotNull(stream);
+        ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
+
+        assertNotNull(country);
+        assertEquals("Åland Islands", country.getName());
+    }
+
+    public void testParsingNullsAfg() {
+        InputStream stream = CountryApiTest.class.getResourceAsStream("/country/countryAfghanistan.json");
+        assertNotNull(stream);
+        ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
+
+        assertNotNull(country);
+        assertEquals("Afghanistan", country.getName());
+    }
+
     public void testTransform() {
         InputStream stream = CountryApiTest.class.getResourceAsStream("/country/country.json");
-        ApiCountry api = gson.fromJson(stringResponse(stream), ApiCountry.class);
+        ApiCountry api = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
         Country model = api.modelFromMap();
         assertNotNull(model);
@@ -56,22 +75,6 @@ public class CountryApiTest extends TestCase {
         for (Country item : model.getBorders()) {
             assertNotNull(item.getIso3LetterCode());
         }
-    }
-
-    private static String stringResponse(InputStream response) {
-        StringBuilder sb = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response));
-
-        String line;
-
-        try {
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb.toString();
     }
 
 }
