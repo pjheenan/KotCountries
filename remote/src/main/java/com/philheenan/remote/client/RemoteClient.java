@@ -6,7 +6,7 @@ import retrofit.client.Response;
 import retrofit.http.*;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author Phil Heenan (pjheenan@gmail.com)
  */
 public interface RemoteClient {
 

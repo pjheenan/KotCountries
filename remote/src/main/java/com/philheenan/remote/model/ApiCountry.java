@@ -52,8 +52,10 @@ public class ApiCountry {
         }
 
         result.location = new Location();
-        result.location.latitude = this.latlng[0];
-        result.location.longitude = this.latlng[1];
+        if (this.latlng != null && this.latlng.length == 2) {
+            result.location.latitude = this.latlng[0];
+            result.location.longitude = this.latlng[1];
+        }
 
         return result;
     }

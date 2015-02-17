@@ -1,11 +1,11 @@
 package com.philheenan.remote.scenario;
 
-import com.google.gson.GsonBuilder;
+import com.google.gson.Gson;
 import com.philheenan.core.model.RemoteRequest;
 import com.philheenan.core.model.country.Country;
 import com.philheenan.remote.RemoteScenario;
 import com.philheenan.remote.RequestHandler;
-import com.philheenan.remote.client.RemoteClient;
+import com.philheenan.remote.model.ApiCountry;
 import com.philheenan.remote.util.ApiUtils;
 
 import java.io.IOException;
@@ -21,8 +21,13 @@ import rx.Subscriber;
  */
 public class RemoteCountriesScenario extends RemoteScenario<List<Country>> {
 
-    RemoteClient client;
     RequestHandler handler;
+    Gson gson;
+
+    public RemoteCountriesScenario(Gson gson, RequestHandler handler) {
+        this.gson = gson;
+        this.handler = handler;
+    }
 
     @Override
     protected RemoteRequest preProcess(RemoteRequest request) {
@@ -31,7 +36,6 @@ public class RemoteCountriesScenario extends RemoteScenario<List<Country>> {
 
     @Override
     public Observable<List<Country>> process(final RemoteRequest request) {
-        handler = new RequestHandler(client);
         return Observable.create(new Observable.OnSubscribe<List<Country>>() {
             @Override
             public void call(Subscriber<? super List<Country>> subscriber) {
@@ -46,9 +50,9 @@ public class RemoteCountriesScenario extends RemoteScenario<List<Country>> {
         List<Country> result = new ArrayList<>();
         try {
             String json = ApiUtils.stringResponse(input.getBody().in());
-            Country[] countries = new GsonBuilder().create().fromJson(json, Country[].class);
-            for (Country country : countries) {
-                result.add(country);
+            ApiCountry[] countries = gson.fromJson(json, ApiCountry[].class);
+            for (ApiCountry country : countries) {
+                result.add(country.getModel());
             }
         } catch (IOException e) {
             e.printStackTrace();

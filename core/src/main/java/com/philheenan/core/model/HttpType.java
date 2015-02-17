@@ -1,7 +1,7 @@
 package com.philheenan.core.model;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author Phil Heenan (pjheenan@gmail.com)
  */
 public enum HttpType {
 

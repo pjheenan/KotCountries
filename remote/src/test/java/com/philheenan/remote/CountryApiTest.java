@@ -9,6 +9,8 @@ import com.philheenan.remote.util.ApiUtils;
 import junit.framework.TestCase;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author phillip.heenan (pjheenan@gmail.com)
@@ -77,5 +79,22 @@ public class CountryApiTest extends TestCase {
             assertNotNull(item.iso2LetterCode);
         }
     }
+
+    public void testTransformList() {
+        InputStream stream = CountryApiTest.class.getResourceAsStream("/country/countries.json");
+        ApiCountry[] api = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry[].class);
+
+        assertTrue(api.length > 0);
+        int length = api.length;
+
+        List<Country> countries = new ArrayList<>();
+        for(ApiCountry c : api) {
+            countries.add(c.getModel());
+        }
+        ;
+        assertNotNull(countries);
+        assertEquals(length, countries.size());
+    }
+
 
 }

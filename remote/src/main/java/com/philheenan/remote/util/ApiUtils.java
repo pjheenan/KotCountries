@@ -3,7 +3,7 @@ package com.philheenan.remote.util;
 import java.io.*;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author Phil Heenan (pjheenan@gmail.com)
  */
 public class ApiUtils {
 

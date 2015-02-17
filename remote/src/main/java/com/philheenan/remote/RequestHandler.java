@@ -6,7 +6,7 @@ import com.philheenan.remote.client.RemoteClient;
 import retrofit.client.Response;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author Phil Heenan (pjheenan@gmail.com)
  */
 public class RequestHandler {
 

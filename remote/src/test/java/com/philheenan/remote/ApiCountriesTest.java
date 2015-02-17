@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 import java.io.InputStream;
 
 /**
- * @author phillip.heenan (phillip.heenan@viagogo.com)
+ * @author Phil Heenan (pjheenan@gmail.com)
  */
 public class ApiCountriesTest extends TestCase {
 
