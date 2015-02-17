@@ -2,6 +2,7 @@ package com.philheenan.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.philheenan.remote.model.ApiCountry;
 import com.philheenan.remote.util.ApiUtils;
 
 import junit.framework.TestCase;
@@ -23,8 +24,8 @@ public class ApiCountriesTest extends TestCase {
         assertNotNull(countries);
         assertTrue(countries.length > 0);
         for (ApiCountry country : countries) {
-            assertNotNull(country.getName());
-            assertTrue(country.getName().length() > 0);
+            assertNotNull(country.name);
+            assertTrue(country.name.length() > 0);
         }
     }
 

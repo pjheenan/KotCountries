@@ -2,12 +2,13 @@ package com.philheenan.remote;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.philheenan.core.model.Country;
+import com.philheenan.core.model.country.Country;
+import com.philheenan.remote.model.ApiCountry;
 import com.philheenan.remote.util.ApiUtils;
 
 import junit.framework.TestCase;
 
-import java.io.*;
+import java.io.InputStream;
 
 /**
  * @author phillip.heenan (pjheenan@gmail.com)
@@ -32,17 +33,17 @@ public class CountryApiTest extends TestCase {
         ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
         assertNotNull(country);
-        assertEquals("Colombia", country.getName());
+        assertEquals("Colombia", country.name);
 
-        assertNotNull(country.getTranslations());
-        assertEquals(5, country.getTranslations().size());
+        assertNotNull(country.translations);
+        assertEquals(5, country.translations.size());
 
-        assertTrue(country.getTranslations().containsKey("de"));
-        assertTrue(country.getTranslations().containsValue("Colombie"));
-        assertNotNull(country.getBorders());
-        assertEquals("PAN", country.getBorders()[2]);
-        assertNotNull(country.getCallingCodes());
-        assertEquals("57", country.getCallingCodes()[0]);
+        assertTrue(country.translations.containsKey("de"));
+        assertTrue(country.translations.containsValue("Colombie"));
+        assertNotNull(country.borders);
+        assertEquals("PAN", country.borders[2]);
+        assertNotNull(country.callingCodes);
+        assertEquals("57", country.callingCodes[0]);
     }
 
     public void testParsingNulls() {
@@ -51,7 +52,7 @@ public class CountryApiTest extends TestCase {
         ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
         assertNotNull(country);
-        assertEquals("Åland Islands", country.getName());
+        assertEquals("Åland Islands", country.name);
     }
 
     public void testParsingNullsAfg() {
@@ -60,20 +61,20 @@ public class CountryApiTest extends TestCase {
         ApiCountry country = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
         assertNotNull(country);
-        assertEquals("Afghanistan", country.getName());
+        assertEquals("Afghanistan", country.name);
     }
 
     public void testTransform() {
         InputStream stream = CountryApiTest.class.getResourceAsStream("/country/country.json");
         ApiCountry api = gson.fromJson(ApiUtils.stringResponse(stream), ApiCountry.class);
 
-        Country model = api.modelFromMap();
+        Country model = api.getModel();
         assertNotNull(model);
-        assertEquals("Colombia", model.getName());
-        assertNotNull(model.getBorders());
-        assertEquals(5, model.getBorders().length);
-        for (Country item : model.getBorders()) {
-            assertNotNull(item.getIso3LetterCode());
+        assertEquals("Colombia", model.name);
+        assertNotNull(model.borders);
+        assertEquals(5, model.borders.size());
+        for (Country item : model.borders) {
+            assertNotNull(item.iso2LetterCode);
         }
     }
 
