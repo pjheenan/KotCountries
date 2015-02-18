@@ -16,6 +16,7 @@ public class RequestHandler {
         this.client = client;
     }
 
+    @SuppressWarnings("unchecked")
     public Response process(RemoteRequest request) {
         switch (request.type) {
             case GET:
