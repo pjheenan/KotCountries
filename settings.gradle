@@ -1,1 +1,1 @@
-include ':app', ':core', ':remote', ':process'
+include ':app', ':core', ':remote', ':process', ':presenter'
