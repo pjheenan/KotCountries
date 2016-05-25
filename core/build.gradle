@@ -1,6 +1,7 @@
 apply plugin: 'java'
 
 dependencies {
+    compile project(':base')
     compile rootProject.ext.libraries.javaxInject
     compile rootProject.ext.libraries.rxjava
     compile rootProject.ext.libraries.dagger
